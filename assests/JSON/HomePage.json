@@ -1,0 +1,33 @@
+[
+    {
+        "name": "Check In",
+        "subtitle": "Let us know you are here!",
+        "url": "https://prestonhollow.wufoo.com/forms/m1ql8dys00wiu8z/"
+    },
+    {
+        "name": "Get Connected",
+        "subtitle": "Get involeved with PHPC!",
+        "url": "https://preston-hollow-presbyterian-church.webflow.io/about"
+    },
+    {
+        "name": "Watch Online",
+        "subtitle": "Watch our 9 and 10:30 a.m. services!",
+        "url": "https://preston-hollow-presbyterian-church.webflow.io/streaming"
+    },
+    {
+        "name": "Bulletin",
+        "subtitle": "Sundays' bulletins",
+        "url": "https://preston-hollow-presbyterian-church.webflow.io/traditional-bulletin/traditional-bulletin"
+    },
+    {
+        "name":"Prayer Request",
+        "subtitle":"Let us know how we can pray for you",
+        "url": "https://prestonhollow.wufoo.com/forms/z1i32j7x14p69ih/"
+    },
+    {
+        "name": "Bible",
+        "subtitle": "Read the Bible",
+        "url":"https://www.bible.com/bible/2016/GEN.1.NRSV"
+    }
+
+]
