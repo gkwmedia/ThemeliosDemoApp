@@ -1,5 +1,4 @@
 import 'package:phpc_v2/Models/sermon_model.dart';
-import 'package:phpc_v2/Models/sermon_series_model.dart';
 
 List<SermonsModel> filterSermons(String seriesId, List<SermonsModel> sermons) {
   List<SermonsModel> filteredSermons =

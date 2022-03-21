@@ -17,20 +17,20 @@ Future<List<SermonsModel>> paginateSermonsList(
       List<SermonsModel> _sermon = sermonsModelFromJson(checkedResposne.body);
 
       allSermons.addAll(_sermon);
-    } /*else {
+    } else {
       int offsetValue = i * 100;
-      print((globals.sermonsApiUrl + '?offset=$offsetValue').toString());
+
       http.Response response = await http.get(
           Uri.parse(globals.sermonsApiUrl + '?offset=$offsetValue'),
           headers: {
             "Authorization": globals.apiKey,
             "accept-version": "1.0.0",
           });
-      print(response.body);
+
       List<SermonsModel> _sermon = sermonsModelFromJson(response.body);
-      print(_sermon);
+
       allSermons.addAll(_sermon);
-    }*/
+    }
   }
   return allSermons;
 }

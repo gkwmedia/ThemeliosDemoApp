@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class NoInternetException {
   String message;
   NoInternetException(this.message);
@@ -26,6 +24,7 @@ class AppException implements Exception {
 
   AppException([this._message, this._prefix]);
 
+  @override
   String toString() {
     return "$_prefix$_message";
   }

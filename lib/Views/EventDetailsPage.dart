@@ -3,7 +3,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
-import 'package:mailto/mailto.dart';
 import 'package:phpc_v2/Models/event_page_model.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:phpc_v2/Services/add_to_calendar.dart';
@@ -11,7 +10,6 @@ import 'package:phpc_v2/Views/Webview.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:phpc_v2/globals.dart' as globals;
 import 'package:url_launcher/url_launcher.dart';
-import 'package:email_launcher/email_launcher.dart';
 
 class EventDetailsPage extends StatelessWidget {
   final EventsModel event;

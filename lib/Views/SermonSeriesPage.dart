@@ -123,7 +123,7 @@ class _SermonSeriesPageState extends State<SermonSeriesPage>
             onPressed: () {
               _refreshData(context);
             },
-            child: Text('Try Again'))
+            child: const Text('Try Again'))
       ],
     ));
   }

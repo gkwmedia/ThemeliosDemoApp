@@ -30,14 +30,14 @@ class BibleReaderRP extends ConsumerWidget {
                 offset: const Offset(0, -4),
                 child: Text(
                   item.verseId.toString() + ' ',
-                  style: TextStyle(fontSize: 12, color: Colors.black54),
+                  style: const TextStyle(fontSize: 12, color: Colors.black54),
                 ),
               )),
             );
             spans.add(
               TextSpan(
                 text: item.verse + ' ',
-                style: TextStyle(fontSize: 20),
+                style: const TextStyle(fontSize: 20),
               ),
             );
           }
@@ -45,7 +45,8 @@ class BibleReaderRP extends ConsumerWidget {
           return Container(
             child: Padding(
               padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
-              child: Text.rich(TextSpan(children: spans, style: TextStyle())),
+              child: Text.rich(
+                  TextSpan(children: spans, style: const TextStyle())),
             ),
           );
         });
@@ -53,33 +54,31 @@ class BibleReaderRP extends ConsumerWidget {
 
   Widget ErrorTypeCheck(WidgetRef ref, err) {
     if (err is NoInternetException) {
-      NoInternetException noInternetException = err as NoInternetException;
+      NoInternetException noInternetException = err;
       return showError(ref, noInternetException.message);
     }
     if (err is NoServiceFoundException) {
-      NoServiceFoundException noServiceFoundException =
-          err as NoServiceFoundException;
+      NoServiceFoundException noServiceFoundException = err;
       return showError(ref, noServiceFoundException.message);
     }
     if (err is InvalidFormatException) {
-      InvalidFormatException invalidFormatException =
-          err as InvalidFormatException;
+      InvalidFormatException invalidFormatException = err;
       return showError(ref, invalidFormatException.message);
     }
     if (err is FetchDataException) {
-      AppException fetchDataException = err as AppException;
+      AppException fetchDataException = err;
       return showError(ref, fetchDataException.toString());
     }
     if (err is BadRequestException) {
-      AppException badRequestException = err as AppException;
+      AppException badRequestException = err;
       return showError(ref, badRequestException.toString());
     }
     if (err is UnauthorisedException) {
-      AppException unauthorisedException = err as AppException;
+      AppException unauthorisedException = err;
       return showError(ref, unauthorisedException.toString());
     }
     if (err is InvalidInputException) {
-      AppException invalidInputException = err as AppException;
+      AppException invalidInputException = err;
       return showError(ref, invalidInputException.toString());
     }
     UnknownException unknownException = err as UnknownException;
@@ -102,7 +101,7 @@ class BibleReaderRP extends ConsumerWidget {
               ref.refresh(bibleTranslationFutureProvider);
               ref.refresh(bibleVersesProvider);
             },
-            child: Text('Try Again'))
+            child: const Text('Try Again'))
       ],
     ));
   }

@@ -126,7 +126,7 @@ class _EventPageState extends State<EventPage>
             onPressed: () {
               _refreshData(context);
             },
-            child: Text('Try Again'))
+            child: const Text('Try Again'))
       ],
     ));
   }
@@ -159,7 +159,7 @@ class EventListTile extends StatelessWidget {
               tag: 'Event_Image' + index.toString(),
               child: CachedNetworkImage(
                 imageUrl: event.image.url,
-                placeholder: (context, url) => Container(
+                placeholder: (context, url) => const SizedBox(
                   width: 100,
                   height: 100,
                 ),

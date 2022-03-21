@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:phpc_v2/Theme/material_color.dart';
 import 'package:phpc_v2/Views/Webview.dart';
 import 'package:phpc_v2/globals.dart' as globals;
 import 'package:url_launcher/url_launcher.dart';

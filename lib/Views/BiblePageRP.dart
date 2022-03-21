@@ -200,7 +200,7 @@ void bookChapterModal(context, safeHeight,
     useRootNavigator: true,
     context: context,
     builder: (context) {
-      return Container(
+      return SizedBox(
         height: MediaQuery.of(context).size.height - safeHeight,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -281,7 +281,7 @@ void translationModal(
       useRootNavigator: true,
       context: context,
       builder: (context) {
-        return Container(
+        return SizedBox(
           height: MediaQuery.of(context).size.height - safeHeight,
           child: Padding(
             padding: const EdgeInsets.all(8),
