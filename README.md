@@ -1,4 +1,4 @@
-# phpc_v2
+# Themelios Demo App
 
 A new Flutter project.
 

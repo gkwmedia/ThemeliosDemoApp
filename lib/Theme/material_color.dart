@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:phpc_v2/globals.dart' as globals;
 
 final ThemeData theme = ThemeData(
   primarySwatch: generateMaterialColor(Palette.primary),
@@ -14,7 +15,7 @@ final ThemeData theme = ThemeData(
 );
 
 class Palette {
-  static const Color primary = Color(0xFF243039);
+  static const Color primary = Color(0xFF333333);
 }
 
 MaterialColor generateMaterialColor(Color color) {
