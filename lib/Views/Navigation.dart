@@ -33,7 +33,7 @@ class _PageNavigationState extends State<PageNavigation> {
     _pages = [
       CupertinoTabView(
         navigatorKey: firstTabNavKey,
-        builder: (BuildContext context) => HomePage(),
+        builder: (BuildContext context) => const FrontPage(),
       ),
       CupertinoTabView(
         navigatorKey: secondTabNavKey,
@@ -45,7 +45,7 @@ class _PageNavigationState extends State<PageNavigation> {
       ),
       CupertinoTabView(
         navigatorKey: fourthTabNavKey,
-        builder: (BuildContext context) => const GivingPage(),
+        builder: (BuildContext context) => const GivePage(),
       ),
       CupertinoTabView(
         navigatorKey: fifthTabNavKey,

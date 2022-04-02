@@ -1,125 +1,98 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:phpc_v2/Models/home_page_model.dart';
-import 'package:phpc_v2/Services/local_files.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:phpc_v2/Models/front_page_image_model.dart';
+import 'package:phpc_v2/Models/front_page_model.dart';
+import 'package:phpc_v2/Providers/front_page_image_provider.dart';
+import 'package:phpc_v2/Providers/front_page_provider.dart';
 import 'package:phpc_v2/Views/LiveStreamPage.dart';
 import 'package:phpc_v2/Views/Webview.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class FrontPage extends ConsumerStatefulWidget {
+  const FrontPage({Key? key}) : super(key: key);
 
   @override
-  _HomePageState createState() => _HomePageState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _FrontPageState();
 }
 
-class _HomePageState extends State<HomePage>
+class _FrontPageState extends ConsumerState<FrontPage>
     with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home'),
-      ),
-      /*drawer: Drawer(
-        child: Column(
-          children: [
-            DrawerHeader(
-              padding: EdgeInsets.zero,
-              decoration: BoxDecoration(color: Theme.of(context).primaryColor),
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                child: Padding(
-                  padding: const EdgeInsets.all(0),
-                  child: Image.asset(
-                    'images/Logo.png',
-                  ),
-                ),
-              ),
+    AsyncValue<List<FrontPageModel>> frontPageList =
+        ref.watch(frontPageProvider);
+    AsyncValue<List<FrontPageImageModel>> frontPageImage =
+        ref.watch(frontPageImageProvider);
+
+    return frontPageList.when(
+        error: (error, stackTrace) => Center(child: Text(error.toString())),
+        loading: () => const Center(
+              child: CircularProgressIndicator(),
             ),
-            InkWell(
-              onTap: () {},
-              child: Row(
-                children: const [
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 8),
-                    child: Icon(
-                      Icons.settings,
-                      size: 25,
-                    ),
+        data: (frontPageList) {
+          return frontPageImage.when(
+              error: (error, stackTrace) => Center(
+                    child: Text(error.toString()),
                   ),
-                  Text(
-                    'About',
-                    style: TextStyle(fontSize: 25),
-                  )
-                ],
-              ),
-            )
-          ],
-        ),
-      ),*/
-      body: FutureBuilder<List<HomePageModel>>(
-        future: fetchHomePage(),
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          if (snapshot.hasData) {
-            return CustomScrollView(
-              slivers: <Widget>[
-                SliverToBoxAdapter(
-                  child: InkWell(
-                    child: SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      child: Image.asset(
-                        'images/WatchLive.png',
-                        fit: BoxFit.fill,
+              loading: () => const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+              data: (frontPageImage) {
+                return Scaffold(
+                  appBar: AppBar(
+                    title: const Text('Home'),
+                  ),
+                  body: CustomScrollView(
+                    slivers: <Widget>[
+                      SliverToBoxAdapter(
+                        child: InkWell(
+                          child: SizedBox(
+                            width: MediaQuery.of(context).size.width,
+                            child: CachedNetworkImage(
+                              imageUrl: frontPageImage[0].image.url,
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                          onTap: () {
+                            Navigator.of(context)
+                                .push(MaterialPageRoute(builder: (context) {
+                              return const LiveStreamPage();
+                            }));
+                          },
+                        ),
                       ),
-                    ),
-                    onTap: () {
-                      Navigator.of(context)
-                          .push(MaterialPageRoute(builder: (context) {
-                        return const LiveStreamPage();
-                      }));
-                    },
+                      SliverList(
+                        delegate: SliverChildBuilderDelegate(
+                          (context, index) {
+                            // return HomePageTile(homePageItem: frontPageList[index]);
+                            return frontPageTile(context, frontPageList[index]);
+                          },
+                          childCount: frontPageList.length,
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-                SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    (context, index) {
-                      return HomePageTile(homePageItem: snapshot.data[index]);
-                    },
-                    childCount: snapshot.data.length,
-                  ),
-                ),
-              ],
-            );
-          }
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        },
-      ),
-    );
+                );
+              });
+        });
   }
 
   @override
   bool get wantKeepAlive => true;
 }
 
-class HomePageTile extends StatelessWidget {
-  const HomePageTile({required this.homePageItem, Key? key}) : super(key: key);
-  final HomePageModel homePageItem;
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(homePageItem.name),
-      subtitle: Text(homePageItem.subtitle),
-      trailing: const Icon(
-        Icons.arrow_forward_ios,
-        size: 18,
-      ),
-      onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-          return WebViewStack(url: homePageItem.url);
-        }));
-      },
-    );
-  }
+Widget frontPageTile(BuildContext context, FrontPageModel frontPageItem) {
+  return ListTile(
+    title: Text(frontPageItem.name),
+    subtitle: Text(frontPageItem.subtitle),
+    trailing: const Icon(
+      Icons.arrow_forward_ios,
+      size: 18,
+    ),
+    onTap: () {
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+        return WebViewStack(url: frontPageItem.link);
+      }));
+    },
+  );
 }

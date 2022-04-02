@@ -31,7 +31,7 @@
     </queries>
 
     <application
-        android:label="phpc_v2"
+        android:label="Themelios Demo"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
