@@ -31,7 +31,7 @@
     </queries>
 
     <application
-        android:label="Themelios Demo"
+        android:label="Church Online"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
